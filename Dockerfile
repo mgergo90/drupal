@@ -39,3 +39,4 @@ COPY files/000-default.conf /etc/apache2/sites-enabled/
 
 WORKDIR /var/www/html
 
+CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
