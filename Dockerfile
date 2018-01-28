@@ -25,7 +25,7 @@ RUN set -ex \
     && php composer-setup.php --install-dir=/usr/local/bin --filename=composer \
     && rm composer-setup.php \
     # Drush
-    && composer global require drush/drush; \
+    && composer global require drush/drush:8.*; \
     ln -s /root/.composer/vendor/bin/drush /usr/local/bin/drush;
 
 COPY files/000-default.conf /etc/apache2/sites-enabled/
