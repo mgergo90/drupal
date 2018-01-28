@@ -3,9 +3,6 @@ FROM php:7.0-apache
 
 RUN a2enmod rewrite
 
-ENV DRUSH_PATCHFILE_URL="https://bitbucket.org/davereid/drush-patchfile.git" \
-    DRUSH_LAUNCHER_VER="0.5.1"
-
 # install the PHP extensions we need
 RUN set -ex \
 	&& buildDeps=' \
@@ -30,10 +27,7 @@ RUN set -ex \
     && rm composer-setup.php \
     # Drush
     && composer global require drush/drush \
-    # Drush launcher
-    && curl -fSL "https://github.com/drush-ops/drush-launcher/releases/download/${DRUSH_LAUNCHER_VER}/drush.phar" -o drush.phar; \
-    chmod +x drush.phar; \
-    mv drush.phar /usr/local/bin/drush;
+    && export PATH="$HOME/.composer/vendor/bin:$PATH"; \
 
 COPY files/000-default.conf /etc/apache2/sites-enabled/
 
