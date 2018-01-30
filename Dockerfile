@@ -11,7 +11,9 @@ RUN LC_ALL=C.UTF-8 add-apt-repository -y ppa:ondrej/php \
         git \
         unzip \
         curl \
+        wget \
         apache2 \
+        libapache2-mod-php7.1 \
         libapache2-mod-rpaf \
         libapache2-mod-fastcgi \
         php7.1-cli \
