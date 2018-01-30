@@ -28,20 +28,21 @@ RUN LC_ALL=C.UTF-8 add-apt-repository -y ppa:ondrej/php \
         php7.1-sqlite3 \
         php7.1-bcmath \
         php7.1-intl \
+        php7.1-opcache \
         php-xdebug \
         php-redis \
         mysql-client \
     && apt-get clean \
-    && rm -rf /var/lib/apt/lists/* \
-    && phpenmod opcache \
-    && echo "opcache.save_comments=1" >> /etc/php/7.1/cli/php.ini \
-    && echo "opcache.save_comments=1" >> /etc/php/7.1/fpm/php.ini
+    && rm -rf /var/lib/apt/lists/*
 
 RUN a2enmod rewrite && \
     a2enmod rpaf && \
     a2enmod actions && \
     a2enmod fastcgi && \
     a2enmod headers \
+    && a2enmod proxy_fcgi setenvif \
+    && a2enconf php7.1-fpm \
+    && phpenmod opcache \
 	# Composer
     && curl -fSL "https://getcomposer.org/installer" -o composer-setup.php \
     && php composer-setup.php --install-dir=/usr/local/bin --filename=composer \
