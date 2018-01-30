@@ -1,4 +1,3 @@
-# from https://www.drupal.org/requirements/php#drupalversions
 FROM ubuntu:trusty
 
 ENV DEBIAN_FRONTEND noninteractive
@@ -33,7 +32,8 @@ RUN LC_ALL=C.UTF-8 add-apt-repository -y ppa:ondrej/php \
         php-redis \
         mysql-client \
     && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/* \
+    && echo "opcache.save_comments=1" >> /etc/php/7.1/cli/php.ini
 
 RUN a2enmod rewrite && \
     a2enmod rpaf && \
