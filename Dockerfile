@@ -33,7 +33,9 @@ RUN LC_ALL=C.UTF-8 add-apt-repository -y ppa:ondrej/php \
         mysql-client \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
-    && echo "opcache.save_comments=1" >> /etc/php/7.1/cli/php.ini
+    && phpenmod opcache \
+    && echo "opcache.save_comments=1" >> /etc/php/7.1/cli/php.ini \
+    && echo "opcache.save_comments=1" >> /etc/php/7.1/fpm/php.ini
 
 RUN a2enmod rewrite && \
     a2enmod rpaf && \
