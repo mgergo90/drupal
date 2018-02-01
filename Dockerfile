@@ -41,6 +41,7 @@ RUN a2enmod rewrite && \
     a2enmod rpaf && \
     a2enmod actions && \
     a2enmod fastcgi && \
+    a2enmod vhost_alias && \
     a2enmod headers \
     && a2enmod proxy_fcgi setenvif \
     && a2enconf php7.1-fpm \
